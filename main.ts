@@ -47,3 +47,17 @@ to tsconfig.json turns them all on */
 
 /*strictNullChecks:
   more explicitly handles null and undefined types*/
+
+//Any is a special typescript type
+let obj: any = {x: 1};
+
+//The following will not give an error in TypeScript
+//The commented lines do crash the JavaScript
+//Using type any ignors the type checking in TypeScript
+
+// obj.foo();
+// obj();
+obj.bar = 100;
+obj = 'hello';
+const n: number = obj;
+console.log("Type: any", obj);

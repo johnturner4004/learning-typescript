@@ -36,4 +36,12 @@ to tsconfig.json turns them all on */
 /*noImplicitAny:
   prevents variables from having the type any*/
 /*strictNullChecks:
-  more explicitly handles null and undefined types*/ 
+  more explicitly handles null and undefined types*/
+//Any is a special typescript type
+var obj = { x: 1 };
+// obj.foo();
+// obj();
+obj.bar = 100;
+obj = 'hello';
+var n = obj;
+console.log("Type: any", obj);
