@@ -61,3 +61,13 @@ obj.bar = 100;
 obj = 'hello';
 const n: number = obj;
 console.log("Type: any", obj);
+
+//Use the flag noImplicitAny to make TypeScript give an error
+//for any types
+
+//You can add an optional type annotation when declaring variables
+let myName: string = 'John';
+
+//Often type annotations are optional. The following will also be
+//a string type
+let yourName = 'Link';
