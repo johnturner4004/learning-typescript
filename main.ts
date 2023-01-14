@@ -220,3 +220,12 @@ interface Window {
 interface Window {
   ts: number;
 };
+
+//type aliases are for when you have more info about somethings type
+//than TypeScript knows. document.getElementById is an example of this
+const myCanvas = document.getElementById('main_canvas') as HTMLCanvasElement;
+//without specifying TypeScript would only know it was some kind of 
+//HTML element
+
+//in a tsx file you can use angle notation for aliases
+//const myCanvas = <HTMLCanvasElement>document.getElementById('main_canvas')
