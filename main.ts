@@ -190,3 +190,33 @@ function logId(id: Id) {
 
 logId('101');
 logId(202);
+
+//type interfaces are similar to type aliases
+//the difference is interfaces can be extended
+
+interface Animal {
+  name: string;
+};
+
+interface Bear extends Animal {
+  honey: boolean;
+};
+
+//or
+
+type Animal2 = {
+  name: string;
+};
+
+type Bear2 = Animal2 & {
+  honey: boolean;
+};
+
+//new fields can be added to interfaces but not types
+interface Window {
+  title: string;
+};
+
+interface Window {
+  ts: number;
+};
