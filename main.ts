@@ -167,4 +167,26 @@ function welcomePeople(x: string[] | string) {
 function getFirstThree(x: number[] | string) {
   return x.slice(0,3);
   //slice works on both an array of numbers and a string
-}
+};
+
+//Type aliases are names for type objects or unions
+type Point = {
+  x: number;
+  y: number;
+};
+
+function printPoint(pt: Point) {
+  console.log('The x coord is:', pt.x);
+  console.log('The y coord is:', pt.y);
+};
+
+printPoint({x: 3, y: 5});
+
+type Id = number | string;
+
+function logId(id: Id) {
+  console.log('Your id is:', id);
+};
+
+logId('101');
+logId(202);

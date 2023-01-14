@@ -143,3 +143,16 @@ function getFirstThree(x) {
     return x.slice(0, 3);
     //slice works on both an array of numbers and a string
 }
+;
+function printPoint(pt) {
+    console.log('The x coord is:', pt.x);
+    console.log('The y coord is:', pt.y);
+}
+;
+printPoint({ x: 3, y: 5 });
+function logId(id) {
+    console.log('Your id is:', id);
+}
+;
+logId('101');
+logId(202);
