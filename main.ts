@@ -221,11 +221,36 @@ interface Window {
   ts: number;
 };
 
-//type aliases are for when you have more info about somethings type
+//type assertions are for when you have more info about somethings type
 //than TypeScript knows. document.getElementById is an example of this
 const myCanvas = document.getElementById('main_canvas') as HTMLCanvasElement;
 //without specifying TypeScript would only know it was some kind of 
 //HTML element
 
-//in a tsx file you can use angle notation for aliases
+//in a tsx file you can use angle notation for assertions
 //const myCanvas = <HTMLCanvasElement>document.getElementById('main_canvas')
+
+//type literals limit types to more specific values
+
+function printAlignment(s: string, alignment: 'left' | 'right' | 'center') {
+  console.log(s, alignment);
+};
+
+//works
+printAlignment('Hello', 'center');
+
+//error: Argument of type '"up"' is not assignable to parameter or 
+//type '"left" | "right" | "center"'.
+// printAlignment('Hello', 'up');
+
+//type literals can be combined with non literal types
+interface Options {
+  width: number;
+};
+
+function printWidth(x: Options | 'auto') {
+  console.log(x);
+};
+
+printWidth({width: 50});
+printWidth('auto');

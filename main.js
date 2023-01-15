@@ -156,3 +156,28 @@ function logId(id) {
 ;
 logId('101');
 logId(202);
+;
+;
+;
+;
+//type assertions are for when you have more info about somethings type
+//than TypeScript knows. document.getElementById is an example of this
+var myCanvas = document.getElementById('main_canvas');
+//without specifying TypeScript would only know it was some kind of 
+//HTML element
+//in a tsx file you can use angle notation for assertions
+//const myCanvas = <HTMLCanvasElement>document.getElementById('main_canvas')
+//type literals limit types to more specific values
+function printAlignment(s, alignment) {
+    console.log(s, alignment);
+}
+;
+//works
+printAlignment('Hello', 'center');
+;
+function printWidth(x) {
+    console.log(x);
+}
+;
+printWidth({ width: 50 });
+printWidth('auto');
