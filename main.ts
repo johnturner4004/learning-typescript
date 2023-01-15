@@ -254,3 +254,16 @@ function printWidth(x: Options | 'auto') {
 
 printWidth({width: 50});
 printWidth('auto');
+
+//with objects, type scripts assume values can change. 
+//use an interface to specify when they can only be a certain set of values
+const req = ({url: 'https://www.example.com', method: 'GET'});
+// handleRequest(req.url, req.method)
+//this will return an error because type string is not the same as the 
+//method GET
+const req2 = ({url: 'https://www.example.com', method: 'GET' as 'GET'});
+//or
+const req3 = ({url: 'https://www.example.com', method: 'GET'})
+//handleRequest(req.url, req.method as 'GET')
+//finally const can change the whole object to a literal
+const req4 = ({url: 'https://www.example.com', method: 'GET'}) as const;
