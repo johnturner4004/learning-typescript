@@ -267,3 +267,15 @@ const req3 = ({url: 'https://www.example.com', method: 'GET'})
 //handleRequest(req.url, req.method as 'GET')
 //finally const can change the whole object to a literal
 const req4 = ({url: 'https://www.example.com', method: 'GET'}) as const;
+
+//null and undefined are two primitives for uninitialized of absent values
+//strictNullChecks determines whether or not null or undefined values
+//can be accessed normally or if you need to check it they are null first
+//the postfix ! makes sure the value is not null or undefined
+function doSomething(x?: string | null) {
+  console.log(x!.toUpperCase);
+}
+
+doSomething("Hello");
+doSomething();
+//both work because it checks to make sure the x is not null

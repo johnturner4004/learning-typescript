@@ -181,3 +181,25 @@ function printWidth(x) {
 ;
 printWidth({ width: 50 });
 printWidth('auto');
+//with objects, type scripts assume values can change. 
+//use an interface to specify when they can only be a certain set of values
+var req = ({ url: 'https://www.example.com', method: 'GET' });
+// handleRequest(req.url, req.method)
+//this will return an error because type string is not the same as the 
+//method GET
+var req2 = ({ url: 'https://www.example.com', method: 'GET' });
+//or
+var req3 = ({ url: 'https://www.example.com', method: 'GET' });
+//handleRequest(req.url, req.method as 'GET')
+//finally const can change the whole object to a literal
+var req4 = ({ url: 'https://www.example.com', method: 'GET' });
+//null and undefined are two primitives for uninitialized of absent values
+//strictNullChecks determines whether or not null or undefined values
+//can be accessed normally or if you need to check it they are null first
+//the postfix ! makes sure the value is not null or undefined
+function doSomething(x) {
+    console.log(x.toUpperCase);
+}
+doSomething("Hello");
+doSomething();
+//both work because it checks to make sure the x is not null
