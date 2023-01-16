@@ -273,11 +273,11 @@ const req4 = ({url: 'https://www.example.com', method: 'GET'}) as const;
 //can be accessed normally or if you need to check it they are null first
 //the postfix ! makes sure the value is not null or undefined
 function doSomething(x?: string | null) {
-  console.log(x!.toUpperCase);
+  console.log(x!.toUpperCase());
 }
 
 doSomething("Hello");
-doSomething();
+// doSomething();
 //both work because it checks to make sure the x is not null
 
 //By using 'circle' and 'square' instead of just 'string' is a discriminated
@@ -343,3 +343,26 @@ function getArea4(shape: Shape2) {
 //possible unaccounted input. If we added a triangle to Shape2 this would
 //give an error because triangle is not assignable to type never requiring
 //us to first handle the case where the kind is a triangle first.
+
+//function type expressions are syntactically similar to arrow functions
+function greeter(fn: (a: string) => void) {
+  fn('Hello World');
+}
+
+function printToConsole(s: string) {
+  console.log(s);
+}
+
+greeter(printToConsole);
+
+// type aliases can also be used for functions
+type GreetFunction = (a: string) => void;
+function greeter2(fn: GreetFunction) {
+  fn('Hello World Again');
+};
+
+function printToConsole2(s: string) {
+  console.log(s);
+};
+
+greeter2(printToConsole2);

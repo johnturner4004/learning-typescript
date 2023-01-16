@@ -198,10 +198,9 @@ var req4 = ({ url: 'https://www.example.com', method: 'GET' });
 //can be accessed normally or if you need to check it they are null first
 //the postfix ! makes sure the value is not null or undefined
 function doSomething(x) {
-    console.log(x.toUpperCase);
+    console.log(x.toUpperCase());
 }
 doSomething("Hello");
-doSomething();
 function getArea(shape) {
     if (shape.kind === 'circle') {
         return Math.PI * Math.pow(shape.radius, 2);
@@ -238,3 +237,20 @@ function getArea4(shape) {
 //possible unaccounted input. If we added a triangle to Shape2 this would
 //give an error because triangle is not assignable to type never requiring
 //us to first handle the case where the kind is a triangle first.
+//function type expressions are syntactically similar to arrow functions
+function greeter(fn) {
+    fn('Hello World');
+}
+function printToConsole(s) {
+    console.log(s);
+}
+greeter(printToConsole);
+function greeter2(fn) {
+    fn('Hello World Again');
+}
+;
+function printToConsole2(s) {
+    console.log(s);
+}
+;
+greeter2(printToConsole2);
