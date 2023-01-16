@@ -202,4 +202,39 @@ function doSomething(x) {
 }
 doSomething("Hello");
 doSomething();
-//both work because it checks to make sure the x is not null
+function getArea(shape) {
+    if (shape.kind === 'circle') {
+        return Math.PI * Math.pow(shape.radius, 2);
+        //don't forget the ! since radius could be undefined
+    }
+}
+//this is better because it's either a circle with a radius or a square
+//with sides and never a circle without a radius.
+// function getArea2 (shape: Shape2) {
+//   return Math.PI * shape.radius ** 2;
+// }
+//this gives an error because only circles have radii and the shape might 
+//be a square
+function getArea3(shape) {
+    if (shape.kind === 'circle') {
+        Math.PI * Math.pow(shape.radius, 2);
+    }
+}
+//this works because we narrowed it to circles before using the radius
+//unions with the same property with different literals are discriminated
+//unions. In this example 'kind' is the shared property or discriminant
+function getArea4(shape) {
+    switch (shape.kind) {
+        case 'circle':
+            return Math.PI * Math.pow(shape.radius, 2);
+        case 'square':
+            return Math.pow(shape.side, 2);
+        default:
+            var _exhaustiveCheck = shape;
+            return _exhaustiveCheck;
+    }
+}
+//adding a default statement assigning type never to shape handles every
+//possible unaccounted input. If we added a triangle to Shape2 this would
+//give an error because triangle is not assignable to type never requiring
+//us to first handle the case where the kind is a triangle first.
