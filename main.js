@@ -254,3 +254,63 @@ function printToConsole2(s) {
 }
 ;
 greeter2(printToConsole2);
+function doSomething2(fn) {
+    console.log(fn.description + " returned " + fn(6));
+}
+//sometimes a functions input type relates to the output type
+function firstElement(arr) {
+    return arr[0];
+}
+//this works but it would be better to use generics
+function firstElement2(arr) {
+    return arr[0];
+}
+//by adding a parameter type and using it in two places we create
+//a link between the input and output
+//constraints can be used to limit the kinds of types a type
+//parameter can accept
+function longest(a, b) {
+    if (a.length >= b.length) {
+        return a;
+    }
+    else {
+        return b;
+    }
+}
+longest(['red'], ['blue', 'green']); //returns second array
+longest('Blake', 'Aria'); //returns Blake
+function makeDate(mOrTimestamp, d, y) {
+    if (d !== undefined && y !== undefined) {
+        return new Date(y, mOrTimestamp, d);
+    }
+    else {
+        return new Date(mOrTimestamp);
+    }
+}
+var d1 = makeDate(12345678);
+var d2 = makeDate(5, 5, 5);
+// const d3 = makeDate(1, 3);
+//no overload exists for two arguments
+//when writing overflow functions ALWAYS have two or more overflows before
+//the implementation function
+//functions that return no values are void types
+//void and undefined are not the same thing
+//object types return values that are not a primitive
+//object is not the global Object
+//unknown types represent any value. similar to any but safer 
+//some functions never return a value.
+//the never type represents a situation that should never happen
+//the program throws an exception and terminates the program
+//if the function is ever accessed
+function epicFail(msg) {
+    throw new Error(msg);
+}
+//destructuring syntax
+function sum(_a) {
+    var a = _a.a, b = _a.b, c = _a.c;
+    console.log(a + b + c);
+}
+function sum2(_a) {
+    var a = _a.a, b = _a.b, c = _a.c;
+    console.log(a + b + c);
+}

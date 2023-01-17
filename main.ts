@@ -366,3 +366,83 @@ function printToConsole2(s: string) {
 };
 
 greeter2(printToConsole2);
+
+type DescribableFunction = {
+  description: string;
+  (someArg: number): boolean;
+};
+function doSomething2(fn: DescribableFunction) {
+  console.log(fn.description + " returned " + fn(6));
+}
+
+//sometimes a functions input type relates to the output type
+function firstElement(arr: any[]) {
+  return arr[0];
+}
+
+//this works but it would be better to use generics
+function firstElement2<Type>(arr: Type[]): Type | undefined {
+  return arr[0];
+}
+//by adding a parameter type and using it in two places we create
+//a link between the input and output
+
+//constraints can be used to limit the kinds of types a type
+//parameter can accept
+function longest<Type extends { length: number }>(a: Type, b: Type) {
+  if (a.length >=b.length) {
+    return a;
+  } else {
+    return b;
+  }
+}
+
+longest(['red'], ['blue', 'green']); //returns second array
+longest('Blake', 'Aria'); //returns Blake
+// longest(4, 10); error numbers do not have length property
+
+//use as few type parameters as possible
+
+//use overloads to specify that a function needs either one or three arguments
+function makeDate(timestamp: number): Date;
+function makeDate(m: number, d: number, y: number): Date;
+function makeDate(mOrTimestamp: number, d?: number, y?: number): Date {
+  if (d !== undefined && y !== undefined) {
+    return new Date(y, mOrTimestamp, d);
+  } else {
+    return new Date(mOrTimestamp);
+  }
+}
+const d1 = makeDate(12345678);
+const d2 = makeDate(5, 5, 5);
+// const d3 = makeDate(1, 3);
+//no overload exists for two arguments
+//when writing overflow functions ALWAYS have two or more overflows before
+//the implementation function
+
+//functions that return no values are void types
+//void and undefined are not the same thing
+
+//object types return values that are not a primitive
+//object is not the global Object
+
+//unknown types represent any value. similar to any but safer 
+
+//some functions never return a value.
+//the never type represents a situation that should never happen
+//the program throws an exception and terminates the program
+//if the function is ever accessed
+function epicFail(msg: string): never {
+  throw new Error(msg);
+}
+
+//destructuring syntax
+function sum({ a, b, c }: { a: number, b: number, c: number }) {
+  console.log(a + b + c);
+}
+
+//destructuring with named type
+type ABC = { a: number, b: number, c: number };
+function sum2({ a, b, c }: ABC) {
+  console.log(a + b + c);
+}
